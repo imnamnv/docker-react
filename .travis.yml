@@ -1,0 +1,12 @@
+# use sudo command
+sudo: required
+language: generic
+
+# use Docker
+services:
+  - docker
+before_install:
+  - docker build -t imnamnv/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true imnamnv/docker-react npm run test
