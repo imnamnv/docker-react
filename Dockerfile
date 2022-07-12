@@ -6,12 +6,13 @@ WORKDIR /home/node/app
 COPY --chown=node:node package.json . 
 RUN npm install 
 COPY --chown=node:node . .
-RUN npm run build
+CMD ["npm","run","build"]
+# RUN npm run build
 
 FROM nginx
 
 # Help elastic beantalk know port will map
-# BUT now default elastic read docker-compose default
+# BUT now default Elastic Beantalk read docker-compose default
 EXPOSE 80
 
 #get name of phase 1

@@ -2,6 +2,8 @@ version: '3'
 services:
   web:
     build:
+    # context . is where we want to test.
+    # we can edit by reactproject of we want to test this reactproject folder
       context: .
       dockerfile: Dockerfile.dev
     ports:
