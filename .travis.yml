@@ -10,3 +10,25 @@ before_install:
 
 script:
   - docker run -e CI=true imnamnv/docker-react npm run test
+
+deploy:
+  # use elasticbeanstalk to automatic deploy
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  # app in easticbeanstalk in AWS
+  app: "docker-react"
+  # env of app in easticbeanstalk in AWS
+  env: "Dockerreact-env"
+  # after get code in git, Travis will zip and copy to s3
+  # bucket_name is name of s3 where store file
+  bucket_name: "elasticbeanstalk-us-east-1-711039207070"
+  # create a path in s3 to copy
+  # if created it will copy file to this path without create
+  bucket_path: "docker-react"
+  #only deploy when master has changed
+  on:
+    branch: master
+  #IAM key have AdministratorAccess-AWSElasticBeanstalk role
+  access_key_id: $AWS_ACCESS_KEY
+  # need "" in secret
+  secret_access_key: "$AWS_SECRET_KEY"
