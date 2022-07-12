@@ -1,7 +1,7 @@
 #set name of phase 1
 FROM node:16-alpine as builder
 
-WORKDIR /home/node/app
+WORKDIR '/home/node/app'
 #--chown=node:node help we remove error permission
 COPY --chown=node:node package.json . 
 RUN npm install 
