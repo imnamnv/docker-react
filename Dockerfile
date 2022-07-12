@@ -2,12 +2,11 @@
 FROM node:16-alpine as builder
 
 WORKDIR '/app'
-# help we remove error permission
+#--chown=node:node help we remove error permission
 COPY package.json . 
 RUN npm install 
 COPY . .
-CMD ["npm","run","build"]
-# RUN npm run build
+RUN npm run build
 
 FROM nginx
 
