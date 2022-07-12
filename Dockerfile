@@ -1,12 +1,13 @@
 #set name of phase 1
 FROM node:16-alpine as builder
 
-WORKDIR '/app'
+WORKDIR '/home/node/app'
 #--chown=node:node help we remove error permission
 COPY package.json . 
 RUN npm install 
 COPY . .
-RUN npm run build
+CMD ["npm","run","build"]
+# RUN npm run build
 
 FROM nginx
 
@@ -15,4 +16,4 @@ FROM nginx
 EXPOSE 80
 
 #get name of phase 1
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /home/node/app/build /usr/share/nginx/html
