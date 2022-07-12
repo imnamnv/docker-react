@@ -1,3 +1,4 @@
+#Now AWS platform looking for a docker-compose.yml instead Dockerfile
 version: '3'
 services:
   web:
