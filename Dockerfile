@@ -5,7 +5,7 @@ WORKDIR '/app'
 #--chown=node:node help we remove error permission
 COPY --chown=node:node package.json . 
 RUN npm install 
-COPY --chown=user:group . .
+COPY --chown=node:node . .
 RUN npm run build
 
 FROM nginx
